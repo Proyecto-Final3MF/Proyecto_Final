@@ -3,7 +3,7 @@ require_once(__DIR__ . '/../Models/SolicitudM.php');
 require_once(__DIR__ . '/solicitud_historiaC.php');
 require_once(__DIR__ . "/../Views/include/popup.php");
 require_once(__DIR__ . "/HistorialC.php");
-require_once(__DIR__ . '/../Services/EmailService.php');
+//require_once(__DIR__ . '/../Services/EmailService.php');
 
 class SolicitudC {
     private $solicitudModel;
