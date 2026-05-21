@@ -1,19 +1,16 @@
 <?php
 require_once(__DIR__ . '/../Config/conexion.php');
 
-class Mensaje
-{
+class Mensaje {
     private $conexion;
-    public function __construct()
-    {
+    public function __construct() {
         $this->conexion = new mysqli('localhost', 'usuario_tecnicos', '12345', 'tecnicosasociados');
         if ($this->conexion->connect_error) {
             die("Error de conexión: " . $this->conexion->connect_error);
         }
     }
 
-    public function obtenerMensajes($receptor_id = null, $esAdmin = false)
-    {
+    public function obtenerMensajes($receptor_id = null, $esAdmin = false) {
         if ($esAdmin) {
             // Si es admin -> ver todos los mensajes
             $sql = "SELECT m.id, m.usuario_id, m.receptor_id, m.mensaje, m.fecha,
@@ -49,8 +46,7 @@ class Mensaje
         return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
     }
 
-    public function obtenerMensajesConversacion($usuario_id, $otroUsuario_id, $solicitud_id = null)
-    {
+    public function obtenerMensajesConversacion($usuario_id, $otroUsuario_id, $solicitud_id = null) {
         $sql = "SELECT m.id, m.usuario_id, m.receptor_id, m.mensaje, m.fecha, m.solicitud_id,
                    u.nombre AS emisor,
                    r.nombre AS receptor
@@ -81,8 +77,7 @@ class Mensaje
         return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
     }
 
-    public function obtenerConversacionesPorSolicitud($usuario_id, $idSolicitud)
-    {
+    public function obtenerConversacionesPorSolicitud($usuario_id, $idSolicitud) {
         $sql = "SELECT 
                 CASE WHEN usuario_id = ? THEN receptor_id ELSE usuario_id END AS otro_usuario_id,
                 COALESCE(
@@ -108,8 +103,7 @@ class Mensaje
     }
     
     // Obtener conversación entre dos usuarios específicos
-    public function obtenerConversacion($usuario_id, $otro_usuario_id, $solicitud_id = null)
-    {
+    public function obtenerConversacion($usuario_id, $otro_usuario_id, $solicitud_id = null) {
         $sql = "SELECT m.id, m.usuario_id, m.receptor_id, m.mensaje, m.fecha, m.solicitud_id,
                        u.nombre AS emisor, r.nombre AS receptor
                 FROM mensaje m
@@ -139,8 +133,7 @@ class Mensaje
         return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
     }
     // Obtener todos los mensajes
-    public function obtenerTodosLosMensajes()
-    {
+    public function obtenerTodosLosMensajes() {
         $sql = "SELECT m.id, m.usuario_id, m.receptor_id, m.mensaje, m.fecha, 
                        u.nombre AS usuario, 
                        r.nombre AS receptor
@@ -159,8 +152,7 @@ class Mensaje
         return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
     }
 
-    public function obtenerTodasLasConversaciones()
-    {
+    public function obtenerTodasLasConversaciones() {
         $sql = "SELECT LEAST(usuario_id, receptor_id) AS u1,
                 GREATEST(usuario_id, receptor_id) AS u2,
                 COUNT(*) AS total_mensajes,
@@ -172,8 +164,7 @@ class Mensaje
         return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
     }
 
-    public function obtenerConversaciones($usuario_id)
-    {
+    public function obtenerConversaciones($usuario_id) {
         $sql = "SELECT 
                     CASE WHEN m.usuario_id = ? THEN m.receptor_id ELSE m.usuario_id END AS otro_usuario_id,
                     COALESCE(
@@ -200,8 +191,7 @@ class Mensaje
         return $result ? $result->fetch_all(MYSQLI_ASSOC) : [];
     }
     // Enviar mensaje
-    public function enviarMensaje($emisor_id, $receptor_id, $mensaje, $solicitud_id)
-    {
+    public function enviarMensaje($emisor_id, $receptor_id, $mensaje, $solicitud_id) {
         if (!$solicitud_id) {
             return false;
         }
@@ -214,8 +204,7 @@ class Mensaje
     }
 
     // Guardar mensaje sin receptor
-    public function guardarMensaje($usuario_id, $mensaje)
-    {
+    public function guardarMensaje($usuario_id, $mensaje) {
         $sql = "INSERT INTO mensaje (usuario_id, mensaje) VALUES (?, ?)";
         $stmt = $this->conexion->prepare($sql);
         $stmt->bind_param("is", $usuario_id, $mensaje);
@@ -223,8 +212,7 @@ class Mensaje
         $stmt->close();
     }
 
-    public function borrarConversacion($usuario_id, $receptor_id)
-    {
+    public function borrarConversacion($usuario_id, $receptor_id) {
         $sql = "DELETE FROM mensaje
                 WHERE (usuario_id = ? AND receptor_id = ?)
                    OR (usuario_id = ? AND receptor_id = ?)";

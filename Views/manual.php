@@ -224,5 +224,3 @@ _**COSMOS**_ es una plataforma web innovadora diseñada para conectar a clientes
 ## Gracias por leer
 
 ### Esperamos que esta guía le haya sido útil al usar nuestro sitio web. Si tiene alguna otra pregunta, comuníquese con nuestro equipo de soporte técnico al +598 98 431 475 o a nuestra dirección de Gmail: tecnicosasociados0@gmail.com
-
-

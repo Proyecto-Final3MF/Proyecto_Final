@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . "/../include/UH.php");
+    require_once(__DIR__ . "/../include/UH.php");
 ?>
 
 <title>Editar Dispositivo</title>

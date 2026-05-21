@@ -153,7 +153,7 @@ class Producto {
         return null;
     }
 
-public function actualizarProducto($id, $nombre, $imagen, $categoria_id) {
+    public function actualizarProducto($id, $nombre, $imagen, $categoria_id) {
         $sql = "UPDATE producto SET nombre = ?, imagen = ?, id_cat = ? WHERE id = ?";
 
         $stmt = $this->conn->prepare($sql);
@@ -169,21 +169,21 @@ public function actualizarProducto($id, $nombre, $imagen, $categoria_id) {
     }
 
     public function crearP($nombre, $rutaFinal, $categoria_id, $id_usuario) {
-    $sql = "INSERT INTO producto (nombre, imagen, id_cat, id_usuario) VALUES (?, ?, ?, ?)";
-    
-    $stmt = $this->conn->prepare($sql);
-    
-    if (!$stmt) {
-        return false;
+        $sql = "INSERT INTO producto (nombre, imagen, id_cat, id_usuario) VALUES (?, ?, ?, ?)";
+        
+        $stmt = $this->conn->prepare($sql);
+        
+        if (!$stmt) {
+            return false;
+        }
+        $stmt->bind_param("ssii", $nombre, $rutaFinal, $categoria_id, $id_usuario);
+        
+        if ($stmt->execute()) {
+            return $stmt->insert_id;
+        } else {
+            return false;
+        }
     }
-    $stmt->bind_param("ssii", $nombre, $rutaFinal, $categoria_id, $id_usuario);
-    
-    if ($stmt->execute()) {
-        return $stmt->insert_id;
-    } else {
-        return false;
-    }
-}
 
     public function borrarP($id) {
         $sql = "DELETE FROM producto WHERE id = ?";

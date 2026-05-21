@@ -47,5 +47,4 @@ if (session_status() === PHP_SESSION_NONE) {
     </div>
     <script src="Assets/js/trancicion.js"></script>
 </body>
-
 </html>

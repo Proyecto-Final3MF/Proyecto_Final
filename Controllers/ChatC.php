@@ -2,19 +2,16 @@
 require_once __DIR__ . '/../Models/Mensaje.php';
 require_once __DIR__ . '/../Models/SolicitudM.php';
 
-class ChatC
-{
+class ChatC {
     private $mensajeModel;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->mensajeModel = new Mensaje();
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
     }
-    public function mostrarChat()
-    {
+    public function mostrarChat() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -40,8 +37,7 @@ class ChatC
         require_once __DIR__ . '/../Views/chat.php';
     }
 
-    public function cargarMensajes()
-    {
+    public function cargarMensajes() {
         $usuarioId = $_SESSION['id'] ?? null;
         $otroUsuarioId = $_GET['usuario_id'] ?? null;
         $solicitudId = $_GET['solicitud_id'] ?? null;
@@ -58,8 +54,7 @@ class ChatC
     }
 
     // Mostrar la vista de chat
-    public function mostrarConversacion()
-    {
+    public function mostrarConversacion() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -88,8 +83,7 @@ class ChatC
     }
 
     // Devolver solo los mensajes (para Ajax)
-    public function listarMensajes()
-    {
+    public function listarMensajes() {
         $mensaje = new Mensaje();
         $usuario_id = $_SESSION['id'] ?? null;
         $rol = $_SESSION['rol'] ?? null;
@@ -108,8 +102,7 @@ class ChatC
         }
     }
 
-    public function listarConversaciones()
-    {
+    public function listarConversaciones() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -126,15 +119,13 @@ class ChatC
         include __DIR__ . "/../Views/conversaciones.php";
     }
     // Lista todas las conversaciones de un usuario
-    public function registroChats()
-    {
+    public function registroChats() {
         $mensaje = new Mensaje();
         $conversaciones = $mensaje->obtenerTodasLasConversaciones();
         include __DIR__ . "/../Views/registroChats.php";
     }
 
-    public function abrirChat()
-    {
+    public function abrirChat() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -176,8 +167,7 @@ class ChatC
     }
 
     // Guardar nuevo mensaje
-    public function enviar()
-    {
+    public function enviar() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
@@ -203,8 +193,7 @@ class ChatC
         exit();
     }
 
-    public function borrar()
-    {
+    public function borrar() {
         if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }

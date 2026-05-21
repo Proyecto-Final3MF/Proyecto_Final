@@ -295,11 +295,6 @@ class Usuario {
         return $resultado ? $resultado->fetch_all(MYSQLI_ASSOC) : [];
     }
 
-    // Eliminar usuario
-
-   
- // ... (código existente)
-
     /**
      * Verifica si el usuario tiene dependencias activas que impidan su eliminación.
      * @param int $id ID del usuario.
@@ -391,10 +386,6 @@ class Usuario {
             return false;
         }
     }
-
-    // ... (resto del código existente)
-
-    
 
     public function buscarUsuarioId($id) {
         $sql = "SELECT * FROM usuario WHERE id = ?";

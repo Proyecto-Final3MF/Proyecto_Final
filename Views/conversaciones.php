@@ -1,7 +1,6 @@
 <?php
 require_once(__DIR__ . "/../Views/include/UH.php");
 
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
@@ -61,5 +60,4 @@ if (session_status() === PHP_SESSION_NONE) {
     <script src="Assets/js/botonvolver.js"></script>
     <script src="Assets/js/trancicion.js"></script>
 </body>
-
 </html>

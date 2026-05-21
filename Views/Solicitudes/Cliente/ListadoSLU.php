@@ -2,7 +2,6 @@
 require_once(__DIR__ . "/../../include/UH.php");
 ?>
 
-
 <!DOCTYPE html>
 <html lang="es">
 <head>

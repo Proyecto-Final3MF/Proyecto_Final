@@ -4,25 +4,21 @@ require_once(__DIR__ . "/../Models/ProductoM.php");
 require_once(__DIR__ . "/../Controllers/HistorialC.php");
 require_once(__DIR__ . "/../Views/include/popup.php");
 
-class ProductoC
-{
+class ProductoC {
 
     private $historialController;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->historialController = new HistorialController();
     }
 
-    public function formularioP()
-    {
+    public function formularioP() {
         $producto = new Producto();
         $categorias = $producto->obtenerCategorias();
         include(__DIR__ . "/../Views/Producto/FormularioP.php");
     }
 
-    public function guardarP()
-    {
+    public function guardarP() {
         $producto = new Producto();
         $nombre = trim($_POST['nombre']) ?? '';
         $categoria_id = $_POST['categoria'] ?? '';
@@ -96,8 +92,7 @@ class ProductoC
         }
     }
 
-    public function listarP()
-    {
+    public function listarP() {
         $id_usuario = $_SESSION['id'] ?? null;
         if ($id_usuario === null) {
             header("Location: Index.php?accion=login");
@@ -111,8 +106,7 @@ class ProductoC
         include(__DIR__ . "/../Views/Producto/ListadoP.php");
     }
 
-    public function borrarP()
-    {
+    public function borrarP() {
         $producto = new Producto();
         $id = $_GET['id'];
         $id_usuario = $_SESSION['id'];
@@ -136,8 +130,7 @@ class ProductoC
         header("Location: Index.php?accion=listarP");
     }
 
-    public function editarP()
-    {
+    public function editarP() {
         $producto = new Producto();
         $id = $_GET['id'] ?? null;
 
@@ -157,8 +150,7 @@ class ProductoC
         include(__DIR__ . "/../Views/Producto/EditarP.php");
     }
 
-    public function actualizarP()
-    {
+    public function actualizarP() {
         $producto = new Producto();
         $id = $_POST['id'] ?? null;
         $nombre = trim($_POST['nombre']) ?? '';
@@ -266,15 +258,13 @@ class ProductoC
         }
     }
 
-    public function urgentePF()
-    {
+    public function urgentePF() {
         $producto = new Producto();
         $categorias = $producto->obtenerCategorias();
         include(__DIR__ . "/../Views/Producto/FormularioUP.php");
     }
 
-    public function urgenteGP()
-    {
+    public function urgenteGP() {
         $producto = new Producto();
         $nombre = $_POST['nombre'] ?? '';
         $categoria_id = $_POST['categoria'] ?? '';

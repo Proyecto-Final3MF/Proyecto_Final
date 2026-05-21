@@ -1,11 +1,9 @@
 <?php
 require_once(__DIR__ . "/../Views/include/UH.php");
 
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
 
 ?>
 
@@ -68,9 +66,7 @@ if (session_status() === PHP_SESSION_NONE) {
             <input type="text" autocomplete="off" name="mensaje" placeholder="Escribe tu mensaje..." required>
             <button type="submit"><i class="fa fa-upload"></i></button>
         </form>
-
 </body>
-
 
 </html>
 <script src="Assets/js/botonvolver.js"></script>
@@ -96,6 +92,5 @@ if (session_status() === PHP_SESSION_NONE) {
     });
 
     setInterval(cargarMensajes, 3000);
-
     cargarMensajes();
 </script>

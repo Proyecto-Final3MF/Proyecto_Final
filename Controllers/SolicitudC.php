@@ -5,16 +5,14 @@ require_once(__DIR__ . "/../Views/include/popup.php");
 require_once(__DIR__ . "/HistorialC.php");
 require_once(__DIR__ . '/../Services/EmailService.php');
 
-class SolicitudC
-{
+class SolicitudC {
     private $solicitudModel;
     private $historiaC;
     private $historialController;
     private $emailService; // Propiedad para el servicio de email
     private $adminEmail; // Propiedad para el email del admin
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->solicitudModel = new Solicitud();
         $this->historiaC = new HistoriaC();
         $this->historialController = new HistorialController();
@@ -25,8 +23,7 @@ class SolicitudC
         $this->adminEmail = $config['notifications']['admin_email'];
     }
 
-    public function formularioS()
-    {
+    public function formularioS() {
         $id_usuario = $_SESSION['id'] ?? null;
 
         if ($id_usuario == null) {
@@ -40,8 +37,7 @@ class SolicitudC
         include(__DIR__ . "/../Views/Solicitudes/Cliente/FormularioS.php");
     }
 
-    public function guardarS()
-    {
+    public function guardarS() {
         $solicitud = new Solicitud();
         $titulo = trim($_POST['titulo']) ?? '';
         $producto = $_POST['producto'] ?? '';
@@ -84,8 +80,7 @@ class SolicitudC
         }
     }
 
-    public function guardarSU()
-    {
+    public function guardarSU() {
         $solicitud = new Solicitud();
         $titulo = trim($_POST['titulo']) ?? '';
         $producto = $_POST['producto'] ?? '';
@@ -137,8 +132,7 @@ class SolicitudC
         }
     }
 
-    public function borrarS()
-    {
+    public function borrarS() {
         $solicitud = new Solicitud();
         $id = $_GET['id'];
 
@@ -280,8 +274,7 @@ class SolicitudC
         include(__DIR__ . "/../Views/Solicitudes/editarSF.php");
     }
 
-    public function actualizarSF()
-    {
+    public function actualizarSF() {
         $id = $_POST['id'] ?? null;
         $descripcion = trim($_POST['descripcion']) ?? '';
         $estado_id = $_POST['estado'] ?? null;
@@ -360,8 +353,7 @@ class SolicitudC
         }
     }
 
-    public function cancelarS()
-    {
+    public function cancelarS() {
         $id_soli = $_GET['id_solicitud'] ?? null;
         $usuarioId = $_SESSION['id'] ?? null;
 
@@ -429,8 +421,7 @@ class SolicitudC
         }
     }
 
-    public function formularioUS()
-    {
+    public function formularioUS() {
         $id_usuario = $_SESSION['id'] ?? null;
 
         if ($id_usuario == null) {

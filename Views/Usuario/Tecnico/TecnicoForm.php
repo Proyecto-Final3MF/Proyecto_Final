@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_SESSION['rol']) && in_array($_SESSION['rol'], [1, 2, 3])) {
   header("Location: index.php?accion=redireccion");
 }

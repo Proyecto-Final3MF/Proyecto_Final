@@ -412,7 +412,9 @@ class Solicitud {
     }
 
     public function __destruct() {
+        if ($this->conexion && $this->conexion->ping()) {
+            $this->conexion->close();
+        }
     }
-
 }
 ?>

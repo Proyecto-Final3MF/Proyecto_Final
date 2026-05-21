@@ -1,5 +1,4 @@
 <?php
-
 if (isset($_SESSION['rol']) == 1 or isset($_SESSION['rol']) == 2) {
     header("Location: Index.php?accion=redireccion");
 }

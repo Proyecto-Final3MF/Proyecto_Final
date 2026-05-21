@@ -2,22 +2,18 @@
 
 require_once __DIR__ . '/../Models/solicitud_historiaM.php';
 
-class HistoriaC
-{
+class HistoriaC {
     private $solicitudHistoria;
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->solicitudHistoria = new HistoriaM();
     }
 
-    public function registrarEvento($id_solicitud, $evento)
-    {
+    public function registrarEvento($id_solicitud, $evento) {
         $this->solicitudHistoria->registrarEvento($id_solicitud, $evento);
     }
 
-    public function mostrarHistoria()
-    {
+    public function mostrarHistoria() {
         $id_solicitud = $_GET['id_solicitud'];
 
         $historia = new HistoriaM();

@@ -10,7 +10,6 @@ if (isset($_SESSION['mensaje'])) {
     unset($_SESSION['tipo_mensaje']);
 }
 
-
 require_once(dirname(__DIR__, 2) . '/Controllers/NotificacionC.php');
 
 $notifC = new NotificacionC();

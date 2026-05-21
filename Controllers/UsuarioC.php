@@ -8,25 +8,21 @@ class UsuarioC {
     private $reviewController;
     private $conn; // Propiedad para la conexión, necesaria para insert_id
 
-    public function __construct()
-    {
+    public function __construct() {
         $this->historialController = new HistorialController();
         $this->reviewController = new ReviewC();
         $this->conn = conectar();
     }
 
-    public function login()
-    {
+    public function login() {
         include(__DIR__ . "/../Views/Usuario/Login.php");
     }
 
-    public function trabajo()
-    {
+    public function trabajo() {
         include(__DIR__ . "/../Views/Usuario/Tecnico/Trabajo.php");
     }
 
-    public function TecnicoForm()
-    {
+    public function TecnicoForm() {
         $usuario = new Usuario();
         $especializaciones = $usuario->obtenerEspecializaciones();
         include(__DIR__ . "/../Views/Usuario/Tecnico/TecnicoForm.php");
@@ -136,8 +132,7 @@ class UsuarioC {
         }
     }
 
-    public function guardarT()
-    {
+    public function guardarT() {
         $usuarioM = new Usuario();
         $usuario = trim($_POST['usuario']);
         $mail = trim($_POST['mail']);
@@ -292,53 +287,53 @@ class UsuarioC {
         // Nueva validación: El dominio debe ser ASCII (sin tildes, ñ, etc.)
         $domain = substr(strrchr($email, "@"), 1);  // Extrae el dominio (ej: gmail.com)
         if (!preg_match('/^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/', $domain)) {
-        $_SESSION['tipo_mensaje'] = "warning";
-        $_SESSION['mensaje'] = "El dominio del correo electrónico debe contener solo letras, números, puntos y guiones (sin tildes ni ñ).";
-        header("Location: Index.php?accion=editarU&id=$id");
-        exit();
+            $_SESSION['tipo_mensaje'] = "warning";
+            $_SESSION['mensaje'] = "El dominio del correo electrónico debe contener solo letras, números, puntos y guiones (sin tildes ni ñ).";
+            header("Location: Index.php?accion=editarU&id=$id");
+            exit();
         }
 
         $nombreAntiguo = $_SESSION['usuario'] ?? 'Nombre Desconocido';
         $emailAntiguo = $_SESSION['email'] ?? 'Email Desconocido';
 
         // En UsuarioC::actualizarU(), justo después de las validaciones iniciales:
-$foto_perfil = $foto_actual;  // Mantener la actual por defecto
-if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
-    // Ruta absoluta al directorio (ajusta si tu estructura es diferente)
-    $directorio = __DIR__ . "/../Assets/imagenes/perfil/";
-    if (!is_dir($directorio)) {
-        mkdir($directorio, 0755, true);  // Crear directorio si no existe
-    }
-    
-    // Sanitizar el nombre del archivo (evitar caracteres problemáticos)
-    $nombre_original = basename($_FILES['foto_perfil']['name']);
-    $extension = pathinfo($nombre_original, PATHINFO_EXTENSION);
-    $nombre_seguro = preg_replace('/[^a-zA-Z0-9._-]/', '', $nombre_original);  // Remover caracteres no seguros
-    $nombre_archivo = uniqid() . "_" . $nombre_seguro;
-    $ruta_completa = $directorio . $nombre_archivo;
-    
-    // Ruta relativa para guardar en BD (como antes)
-    $foto_perfil = "Assets/imagenes/perfil/" . $nombre_archivo;
-    
-    if (move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $ruta_completa)) {
-        // Éxito: eliminar la foto anterior si no es la default
-        if ($foto_actual !== "Assets/imagenes/perfil/fotodefault.webp" && file_exists($directorio . basename($foto_actual))) {
-            unlink($directorio . basename($foto_actual));
+        $foto_perfil = $foto_actual;  // Mantener la actual por defecto
+        if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_ERR_OK) {
+            // Ruta absoluta al directorio (ajusta si tu estructura es diferente)
+            $directorio = __DIR__ . "/../Assets/imagenes/perfil/";
+            if (!is_dir($directorio)) {
+                mkdir($directorio, 0755, true);  // Crear directorio si no existe
+            }
+        
+            // Sanitizar el nombre del archivo (evitar caracteres problemáticos)
+            $nombre_original = basename($_FILES['foto_perfil']['name']);
+            $extension = pathinfo($nombre_original, PATHINFO_EXTENSION);
+            $nombre_seguro = preg_replace('/[^a-zA-Z0-9._-]/', '', $nombre_original);  // Remover caracteres no seguros
+            $nombre_archivo = uniqid() . "_" . $nombre_seguro;
+            $ruta_completa = $directorio . $nombre_archivo;
+            
+            // Ruta relativa para guardar en BD (como antes)
+            $foto_perfil = "Assets/imagenes/perfil/" . $nombre_archivo;
+            
+            if (move_uploaded_file($_FILES['foto_perfil']['tmp_name'], $ruta_completa)) {
+                // Éxito: eliminar la foto anterior si no es la default
+                if ($foto_actual !== "Assets/imagenes/perfil/fotodefault.webp" && file_exists($directorio . basename($foto_actual))) {
+                    unlink($directorio . basename($foto_actual));
+                }
+            } else {
+                // Error: no actualizar la foto, mostrar mensaje y mantener la actual
+                $_SESSION['tipo_mensaje'] = "danger";
+                $_SESSION['mensaje'] = "Error al subir la foto de perfil. Verifica el tamaño del archivo o permisos del servidor.";
+                $foto_perfil = $foto_actual;
+            }
         }
-    } else {
-        // Error: no actualizar la foto, mostrar mensaje y mantener la actual
-        $_SESSION['tipo_mensaje'] = "danger";
-        $_SESSION['mensaje'] = "Error al subir la foto de perfil. Verifica el tamaño del archivo o permisos del servidor.";
-        $foto_perfil = $foto_actual;
-    }
-}
 
         if ($usuarioM->editarU($id, $nombre, $email, $foto_perfil)) {
             if ($id == $_SESSION['id']) {
-            $_SESSION['usuario'] = $nombre;
-            $_SESSION['email'] = $email;
-            $_SESSION['foto_perfil'] = $foto_perfil;
-        }
+                $_SESSION['usuario'] = $nombre;
+                $_SESSION['email'] = $email;
+                $_SESSION['foto_perfil'] = $foto_perfil;
+            }
 
             if ($nombreAntiguo == $nombre && $emailAntiguo == $email) {
                 $obs = "Ningún cambio detectado";
@@ -354,91 +349,91 @@ if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_
 
             $this->historialController->registrarModificacion($nombre, $id, 'fue actualizado', null, 0, $obs);
 
-        $_SESSION['tipo_mensaje'] = "success";
-        if ($_SESSION['rol'] == ROL_ADMIN && $_SESSION['id'] != $id) {
+            $_SESSION['tipo_mensaje'] = "success";
+            if ($_SESSION['rol'] == ROL_ADMIN && $_SESSION['id'] != $id) {
             
-            $_SESSION['mensaje'] = "Actualizaste el perfil con éxito.";
-            header("Location: Index.php?accion=listarU");
+                $_SESSION['mensaje'] = "Actualizaste el perfil con éxito.";
+                header("Location: Index.php?accion=listarU");
+            } else {
+                $_SESSION['mensaje'] = "Actualizaste tu perfil con éxito.";
+                header("Location: Index.php?accion=redireccion");
+            }
+            exit();
         } else {
-            $_SESSION['mensaje'] = "Actualizaste tu perfil con éxito.";
-            header("Location: Index.php?accion=redireccion");
-        }
-        exit();
-        } else {
-        $_SESSION['tipo_mensaje'] = "danger";
-        $_SESSION['mensaje'] = "Error al actualizar el usuario.";
-        header("Location: Index.php?accion=editarU&id=$id");
-        exit();
+            $_SESSION['tipo_mensaje'] = "danger";
+            $_SESSION['mensaje'] = "Error al actualizar el usuario.";
+            header("Location: Index.php?accion=editarU&id=$id");
+            exit();
         }
     }
 
     public function borrar() {
-    $usuarioM = new Usuario();
-    $id = $_GET["id"];
+        $usuarioM = new Usuario();
+        $id = $_GET["id"];
 
-    // Verificar si es auto-eliminación o eliminación por admin
-    $es_auto_eliminacion = ($_SESSION['id'] == $id);
+        // Verificar si es auto-eliminación o eliminación por admin
+        $es_auto_eliminacion = ($_SESSION['id'] == $id);
 
-    if (!$es_auto_eliminacion && $_SESSION['rol'] !== ROL_ADMIN) {
-        $_SESSION['tipo_mensaje'] = "danger";
-        $_SESSION['mensaje'] = "Acceso denegado. Solo administradores pueden eliminar cuentas de otros usuarios.";
-        header("Location: Index.php?accion=redireccion");
-        exit();
-    }
-
-    // Para auto-eliminación, verificar que no sea admin
-    if ($es_auto_eliminacion && $_SESSION['rol'] == ROL_ADMIN) {
-        $_SESSION['tipo_mensaje'] = "warning";
-        $_SESSION['mensaje'] = "Como administrador, no puedes eliminar tu propia cuenta desde aquí. Contacta a otro admin.";
-        header("Location: Index.php?accion=redireccion");
-        exit();
-    }
-
-    // Obtener datos del usuario ANTES de intentar eliminar (para historial)
-    $usuarioBorrado = $usuarioM->buscarUsuarioId($id);
-    if (!$usuarioBorrado) {
-        $_SESSION['tipo_mensaje'] = "danger";
-        $_SESSION['mensaje'] = "Usuario no encontrado.";
-        $redirect = $es_auto_eliminacion ? "Index.php?accion=redireccion" : "Index.php?accion=listarU";
-        header("Location: $redirect");
-        exit();
-    }
-    $nombre = $usuarioBorrado['nombre'];
-
-    // Intentar eliminar
-    $success = $usuarioM->borrarU($id);
-
-    if ($success) {
-        $this->historialController->registrarModificacion($nombre, $id, 'fue eliminado', null, 0, $es_auto_eliminacion ? 'Auto-eliminación por el usuario.' : 'Eliminado por administrador.');
-
-        if ($es_auto_eliminacion) {
-            session_unset();
-            session_destroy();
-            $_SESSION['tipo_mensaje'] = "success";
-            $_SESSION['mensaje'] = "Tu cuenta ha sido eliminada exitosamente.";
-            header("Location: Index.php?accion=inicio");
-            exit();
-        } else {
-            $_SESSION['tipo_mensaje'] = "success";
-            $_SESSION['mensaje'] = "Usuario eliminado exitosamente.";
-            header("Location: Index.php?accion=listarU");
-            exit();
-        }
-    } else {
-        $dependencias = $usuarioM->verificarDependencias($id);
-        if (!$dependencias['puede_eliminar']) {
-            $_SESSION['tipo_mensaje'] = "warning";
-            $_SESSION['mensaje'] = $dependencias['mensaje'];
-        } else {
+        if (!$es_auto_eliminacion && $_SESSION['rol'] !== ROL_ADMIN) {
             $_SESSION['tipo_mensaje'] = "danger";
-            $_SESSION['mensaje'] = "Error al eliminar el usuario. Inténtalo de nuevo.";
+            $_SESSION['mensaje'] = "Acceso denegado. Solo administradores pueden eliminar cuentas de otros usuarios.";
+            header("Location: Index.php?accion=redireccion");
+            exit();
         }
 
-        $redirect = $es_auto_eliminacion ? "Index.php?accion=redireccion" : "Index.php?accion=listarU";
-        header("Location: $redirect");
-        exit();
+        // Para auto-eliminación, verificar que no sea admin
+        if ($es_auto_eliminacion && $_SESSION['rol'] == ROL_ADMIN) {
+            $_SESSION['tipo_mensaje'] = "warning";
+            $_SESSION['mensaje'] = "Como administrador, no puedes eliminar tu propia cuenta desde aquí. Contacta a otro admin.";
+            header("Location: Index.php?accion=redireccion");
+            exit();
+        }
+
+        // Obtener datos del usuario ANTES de intentar eliminar (para historial)
+        $usuarioBorrado = $usuarioM->buscarUsuarioId($id);
+        if (!$usuarioBorrado) {
+            $_SESSION['tipo_mensaje'] = "danger";
+            $_SESSION['mensaje'] = "Usuario no encontrado.";
+            $redirect = $es_auto_eliminacion ? "Index.php?accion=redireccion" : "Index.php?accion=listarU";
+            header("Location: $redirect");
+            exit();
+        }
+        $nombre = $usuarioBorrado['nombre'];
+
+        // Intentar eliminar
+        $success = $usuarioM->borrarU($id);
+
+        if ($success) {
+            $this->historialController->registrarModificacion($nombre, $id, 'fue eliminado', null, 0, $es_auto_eliminacion ? 'Auto-eliminación por el usuario.' : 'Eliminado por administrador.');
+
+            if ($es_auto_eliminacion) {
+                session_unset();
+                session_destroy();
+                $_SESSION['tipo_mensaje'] = "success";
+                $_SESSION['mensaje'] = "Tu cuenta ha sido eliminada exitosamente.";
+                header("Location: Index.php?accion=inicio");
+                exit();
+            } else {
+                $_SESSION['tipo_mensaje'] = "success";
+                $_SESSION['mensaje'] = "Usuario eliminado exitosamente.";
+                header("Location: Index.php?accion=listarU");
+                exit();
+            }
+        } else {
+            $dependencias = $usuarioM->verificarDependencias($id);
+            if (!$dependencias['puede_eliminar']) {
+                $_SESSION['tipo_mensaje'] = "warning";
+                $_SESSION['mensaje'] = $dependencias['mensaje'];
+            } else {
+                $_SESSION['tipo_mensaje'] = "danger";
+                $_SESSION['mensaje'] = "Error al eliminar el usuario. Inténtalo de nuevo.";
+            }
+
+            $redirect = $es_auto_eliminacion ? "Index.php?accion=redireccion" : "Index.php?accion=listarU";
+            header("Location: $redirect");
+            exit();
+        }
     }
-}
 
     // Nuevo método para mostrar confirmación de eliminación
     public function confirmarEliminarU() {
@@ -479,8 +474,7 @@ if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_
         include(__DIR__ . "/../Views/Usuario/EditarU.php");
     }
 
-    public function autenticar()
-    {
+    public function autenticar() {
         $email = trim($_POST['usuario']);
         $contrasena = $_POST['contrasena'];
         $modelo = new Usuario();
@@ -522,8 +516,7 @@ if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_
         }
     }
 
-    public function listarU()
-    {
+    public function listarU() {
         $orden = $_GET['orden'] ?? '';
         $rol_filter = $_GET['rol_filter'] ?? 'Todos';
         $search = $_GET['search'] ?? '';
@@ -533,14 +526,12 @@ if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_
         include(__DIR__ . "/../Views/Usuario/Admin/listarU.php");
     }
 
-    public function PreviewU()
-    {
+    public function PreviewU() {
         $usuario = new Usuario();
         return $usuario->PreviewU();
     }
 
-    public function PerfilTecnico()
-    {
+    public function PerfilTecnico() {
         $Tecnico = new Usuario();
         $Reviews = new Review();
         $id_tecnico = $_GET['id'] ?? null;
@@ -564,8 +555,7 @@ if (isset($_FILES['foto_perfil']) && $_FILES['foto_perfil']['error'] === UPLOAD_
         include(__DIR__ . "/../Views/Usuario/Tecnico/Perfil.php");
     }
 
-    public function logout()
-    {
+    public function logout() {
         session_start();
         session_unset();
         session_destroy();
