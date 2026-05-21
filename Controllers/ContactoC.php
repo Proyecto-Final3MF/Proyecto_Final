@@ -1,5 +1,5 @@
 <?php
-//require_once(__DIR__ . '/../Services/EmailService.php');
+require_once(__DIR__ . '/../Services/EmailService.php');
 require_once (__DIR__ . "/../Views/include/popup.php");
 
 class ContactoC {
