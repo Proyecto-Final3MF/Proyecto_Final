@@ -1,4 +1,4 @@
-const translations = {
+const traducciones = {
     'en': {
         startNow: "Start Now",
         p: "We help you find a technician to fix your device in record time.",
@@ -19,52 +19,52 @@ const translations = {
     }
 };
 
-function applyTranslations(lang) {
+function applicarTraduccion(lang) {
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
-        if (translations[lang] && translations[lang][key]) {
+        if (traducciones[lang] && traducciones[lang][key]) {
             if (element.tagName === 'TITLE') {
-                document.title = translations[lang][key];
+                document.title = traducciones[lang][key];
             } else {
-                element.textContent = translations[lang][key];
+                element.textContent = traducciones[lang][key];
             }
         }
     });
 }
 
-function changeLanguage(lang) {
+function cambiarIdioma(lang) {
     localStorage.setItem('userLanguage', lang);
     document.documentElement.lang = lang;
-    applyTranslations(lang);
+    applicarTraduccion(lang);
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    let userPreferredLanguage = localStorage.getItem('userLanguage');
-    if (!userPreferredLanguage) {
-        const browserLanguage = navigator.language || navigator.userLanguage;
-        const shortBrowserLanguage = browserLanguage.split('-')[0];
+    let idiomaElegido = localStorage.getItem('userLanguage');
+    if (!idiomaElegido) {
+        const idiomaNavegador = navigator.language || navigator.userLanguage;
+        const shortidiomaNavegador = idiomaNavegador.split('-')[0];
 
-        if (translations[browserLanguage]) {
-            userPreferredLanguage = browserLanguage;
-        } else if (translations[shortBrowserLanguage]) {
-            userPreferredLanguage = shortBrowserLanguage;
+        if (traducciones[idiomaNavegador]) {
+            idiomaElegido = idiomaNavegador;
+        } else if (traducciones[shortidiomaNavegador]) {
+            idiomaElegido = shortidiomaNavegador;
         } else {
-            userPreferredLanguage = 'es';
+            idiomaElegido = 'es';
         }
     }
 
-    changeLanguage(userPreferredLanguage);
+    cambiarIdioma(idiomaElegido);
 
-    const languageSelect = document.getElementById('language-select');
-    if (languageSelect) {
-        languageSelect.value = userPreferredLanguage;
+    const SeleccionarIdioma = document.getElementById('language-select');
+    if (SeleccionarIdioma) {
+        SeleccionarIdioma.value = idiomaElegido;
     }
 });
 
-const languageSelect = document.getElementById('language-select');
-if (languageSelect) {
-    languageSelect.addEventListener('change', (event) => {
-        const selectedLanguage = event.target.value;
-        changeLanguage(selectedLanguage);
+const SeleccionarIdioma = document.getElementById('language-select');
+if (SeleccionarIdioma) {
+    SeleccionarIdioma.addEventListener('change', (event) => {
+        const IdiomaSeleccionado = event.target.value;
+        cambiarIdioma(IdiomaSeleccionado);
     });
 }
