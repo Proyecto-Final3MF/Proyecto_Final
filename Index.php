@@ -14,7 +14,7 @@ require_once(__DIR__ . "/Controllers/ChatC.php");
 require_once(__DIR__ . "/Controllers/NotificacionC.php");
 require_once(__DIR__ . "/Controllers/PublicC.php");
 
-$accion = $_GET['accion'] ?? 'Index';
+$accion = $_GET['accion'] ?? 'inicio';
 
 $acciones_publicas = ['login', 'autenticar', 'register', 'guardarU', 'guardarT', 'redireccion', 'espera', 'trabajo', 'TecnicoForm' , 'inicio', 'nosotros', 'contacto' , 'terminos' ];
 
@@ -31,8 +31,8 @@ const ROL_ADMIN = 3;
 
 switch ($accion) {
 
-
   //acciones publicas
+
   case 'login':
     $controller = new UsuarioC();
     $controller->login();
@@ -398,12 +398,8 @@ switch ($accion) {
     $controller->confirmarEliminarU();
   break;
 
-  //accion default
-
   case 'panelA':
-    // Esta acción debe redirigir a la vista del panel de administración
     if ($_SESSION['rol'] == ROL_ADMIN) {
-        // Asumiendo que hay una vista principal para el admin
         include(__DIR__ . "/Views/Usuario/Admin/PanelA.php");
     } else {
         header("Location: Index.php?accion=redireccion");
