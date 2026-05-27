@@ -30,6 +30,11 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
                 <i class="fa-solid fa-moon"></i>
             </button>
 
+            <select name="idioma" id="language-select">
+                <option value="es">Español</option>
+                <option value="en">English</option>
+            </select>
+
             <ul class="nav-links" id="nav-links">
                 <!-- Botón de Inicio -->
                 <li>
@@ -225,3 +230,4 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
 <script src="Assets/js/menudeusuario.js"></script>
 <script src="Assets/js/transicion.js"></script>
 <script src="Assets/js/modoOscuro.js"></script>
+<script src="Assets/js/Traduccion/Traductor.js"></script>
