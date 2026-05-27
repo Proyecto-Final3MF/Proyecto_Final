@@ -1,5 +1,5 @@
 <?php
-require_once(__DIR__ . '/../Services/EmailService.php');
+//require_once(__DIR__ . '/../Services/EmailService.php');
 require_once (__DIR__ . "/../Views/include/popup.php");
 
 class ContactoC {
@@ -23,32 +23,32 @@ class ContactoC {
                 exit();
             }
 
-            $emailService = new EmailService();
+            //$emailService = new EmailService();
 
             // Construir cuerpo del mensaje en formato HTML
-            $contenido = "
-                <strong>Nombre:</strong> $nombre<br>
-                <strong>Apellido:</strong> $apellido<br>
-                <strong>Correo o celular:</strong> $correo<br><br>
-                <strong>Mensaje:</strong><br>
-                <p>$mensaje</p>
-            ";
+            //$contenido = "
+                //<strong>Nombre:</strong> $nombre<br>
+                //<strong>Apellido:</strong> $apellido<br>
+                //<strong>Correo o celular:</strong> $correo<br><br>
+                //<strong>Mensaje:</strong><br>
+                //<p>$mensaje</p>
+            //";
 
             // Enviar correo al administrador
-            $destinatario = 'tecnicosyasociados0@gmail.com';
-            $asunto = isset($_SESSION['usuario'])
-                ? "Nuevo mensaje de contacto de {$_SESSION['usuario']} ($nombre $apellido)"
-                : "Nuevo mensaje de contacto de $nombre $apellido";
+            //$destinatario = 'tecnicosyasociados0@gmail.com';
+            //$asunto = isset($_SESSION['usuario'])
+                //? "Nuevo mensaje de contacto de {$_SESSION['usuario']} ($nombre $apellido)"
+                //: "Nuevo mensaje de contacto de $nombre $apellido";
 
-            $enviado = $emailService->enviarNotificacion($destinatario, $asunto, $contenido);
+            //$enviado = $emailService->enviarNotificacion($destinatario, $asunto, $contenido);
 
-            if ($enviado) {
-                $_SESSION['tipo_mensaje'] = "success";
-                $_SESSION['mensaje'] = "Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!";
-            } else {
-                $_SESSION['tipo_mensaje'] = "error";
-                $_SESSION['mensaje'] = "Hubo un error al enviar tu mensaje. Por favor intenta nuevamente más tarde.";
-            }
+            //if ($enviado) {
+                //$_SESSION['tipo_mensaje'] = "success";
+                //$_SESSION['mensaje'] = "Tu mensaje ha sido enviado correctamente. ¡Gracias por contactarnos!";
+            //} else {
+                //$_SESSION['tipo_mensaje'] = "error";
+                //$_SESSION['mensaje'] = "Hubo un error al enviar tu mensaje. Por favor intenta nuevamente más tarde.";
+            //}
 
             // Redirección limpia (refresca la página)
             header("Location: Index.php?accion=contactanos");
