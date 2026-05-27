@@ -91,7 +91,7 @@ if (session_status() === PHP_SESSION_NONE) {
 </div>
 <br><br><br><br>
 
-<script src="Assets/js/trancicion.js"></script>
+<script src="Assets/js/transicion.js"></script>
 
 <script>
     window.addEventListener("load", () => {

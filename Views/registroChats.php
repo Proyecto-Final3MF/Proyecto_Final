@@ -40,6 +40,6 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php endforeach; ?>
     </table>
     </div>
-    <script src="Assets/js/trancicion.js"></script>
+    <script src="Assets/js/transicion.js"></script>
 </body>
 </html>

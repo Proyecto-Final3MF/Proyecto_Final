@@ -58,6 +58,6 @@ if (session_status() === PHP_SESSION_NONE) {
         <?php endif; ?>
     </div>
     <script src="Assets/js/botonvolver.js"></script>
-    <script src="Assets/js/trancicion.js"></script>
+    <script src="Assets/js/transicion.js"></script>
 </body>
 </html>

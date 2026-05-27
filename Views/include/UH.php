@@ -223,5 +223,5 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
 </header>
 
 <script src="Assets/js/menudeusuario.js"></script>
-<script src="Assets/js/trancicion.js"></script>
+<script src="Assets/js/transicion.js"></script>
 <script src="Assets/js/modoOscuro.js"></script>

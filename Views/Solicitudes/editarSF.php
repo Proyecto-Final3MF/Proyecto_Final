@@ -70,7 +70,7 @@ if (!isset($estados) || $estados === null) {
 </section>
 <br>
 </div>
-<script src="Assets/js/trancicion.js"></script>
+<script src="Assets/js/transicion.js"></script>
 <script src="Assets/js/botonvolver.js"></script>
 <script>
     // Función para mostrar/ocultar el campo de precio

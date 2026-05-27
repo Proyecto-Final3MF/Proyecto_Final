@@ -56,7 +56,7 @@ require_once(__DIR__ . "/../../include/UH.php");
     </section>
     <br>
     </div>
-    <script src="Assets/js/trancicion.js"></script>
+    <script src="Assets/js/transicion.js"></script>
     <script src="Assets/js/botonvolver.js"></script>
 </body>
 </html>

@@ -65,7 +65,7 @@
 <h2>15. Aceptación Final</h2>
 <p>Al utilizar Cosmos, el usuario reconoce haber leído, comprendido y aceptado la totalidad de los presentes Términos y Condiciones. El uso continuo del sitio constituye aceptación plena del acuerdo.</p>
 
-<script src="Assets/js/trancicion.js"></script>
+<script src="Assets/js/transicion.js"></script>
 </body>
 </html>
 

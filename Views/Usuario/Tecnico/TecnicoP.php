@@ -49,6 +49,6 @@ $contador_normales = count($notifC->listarNoLeidas('normal'));
         </button>
     </a>
 </div>
-<script src="Assets/js/trancicion.js"></script>
+<script src="Assets/js/transicion.js"></script>
 </body>
 </html>
