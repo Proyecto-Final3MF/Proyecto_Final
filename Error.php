@@ -16,6 +16,6 @@
   <p2 class="output">> Podes intentar volver a <a class="errorLink" href="Index.php?accion=inicio">[Pagina Inicial]</a>.</p>
   <p3 class="output">> Gracias por la comprensión.</p>
 </div>
-<script src="Assets/js/trancicion.js"></script>
+<script src="Assets/js/transicion.js"></script>
 </body>
 </html>

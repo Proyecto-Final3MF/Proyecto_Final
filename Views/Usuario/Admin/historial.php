@@ -96,7 +96,7 @@ require_once(__DIR__ . "../../../include/UH.php");
     <br>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="Assets/js/paginacion.js"></script>
-    <script src="Assets/js/trancicion.js"></script>
+    <script src="Assets/js/transicion.js"></script>
     <script src="Assets/js/botonvolver.js"></script>
 </body>
 </html>
