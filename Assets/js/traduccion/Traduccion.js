@@ -1,52 +1,45 @@
-const traducciones = {
-    'en': {
-        startNow: "Start Now",
-        p: "We help you find a technician to fix your device in record time.",
-        h1: "Welcome to COSMOS",
-        signin: "Sign In",
-        signup: "Sign Up",
-        startPage: "Start Page",
-        contact: "Contact"
-    },
-    'es': {
-        startNow: "Empezar Ahora",
-        p: "Te ayudamos a encontrar un tecnico para arreglar tu dispositivo en tiempo record",
-        h1: "Bienvenido a COSMOS",
-        signin: "Iniciar Session",
-        signup: "Registrarse",
-        startPage: "Inicio",
-        contact: "Contacto"
-    }
-};
+let traducciones = {};
 
-function applicarTraduccion(lang) {
+async function cambiarIdioma(idioma) {
+    try {
+        const modulo = await import(`./locales/${idioma}.js`);
+        traducciones = modulo.default;
+
+        localStorage.setItem('userLanguage', idioma);
+        document.documentElement.lang = idioma
+        
+        applicarTraduccion();
+    } catch (error) {
+        console.error(`Erro ao carregar o idioma: ${idioma}`, error);
+        if (idioma !== 'es') cambiarIdioma('es');
+    }
+}
+
+function applicarTraduccion() {
     document.querySelectorAll('[data-translate]').forEach(element => {
         const key = element.getAttribute('data-translate');
-        if (traducciones[lang] && traducciones[lang][key]) {
+        if (traducciones[key]) {
             if (element.tagName === 'TITLE') {
-                document.title = traducciones[lang][key];
+                document.title = traducciones[key];
             } else {
-                element.textContent = traducciones[lang][key];
+                element.textContent = traducciones[key];
             }
         }
     });
 }
 
-function cambiarIdioma(lang) {
-    localStorage.setItem('userLanguage', lang);
-    document.documentElement.lang = lang;
-    applicarTraduccion(lang);
-}
-
 document.addEventListener('DOMContentLoaded', () => {
     let idiomaElegido = localStorage.getItem('userLanguage');
+    
     if (!idiomaElegido) {
         const idiomaNavegador = navigator.language || navigator.userLanguage;
         const shortidiomaNavegador = idiomaNavegador.split('-')[0];
 
-        if (traducciones[idiomaNavegador]) {
+        const idiomasSoportados = ['en', 'es', 'pt'];
+
+        if (idiomasSoportados.includes(idiomaNavegador)) {
             idiomaElegido = idiomaNavegador;
-        } else if (traducciones[shortidiomaNavegador]) {
+        } else if (idiomasSoportados.includes(shortidiomaNavegador)) {
             idiomaElegido = shortidiomaNavegador;
         } else {
             idiomaElegido = 'es';

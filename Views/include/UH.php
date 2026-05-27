@@ -33,6 +33,7 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
             <select name="idioma" id="language-select">
                 <option value="es">Español</option>
                 <option value="en">English</option>
+                <option value="pt">Portugues</option>
             </select>
 
             <ul class="nav-links" id="nav-links">
@@ -230,4 +231,4 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
 <script src="Assets/js/menudeusuario.js"></script>
 <script src="Assets/js/transicion.js"></script>
 <script src="Assets/js/modoOscuro.js"></script>
-<script src="Assets/js/Traduccion/Traductor.js"></script>
+<script type="module" src="Assets/js/traduccion/Traduccion.js"></script>
