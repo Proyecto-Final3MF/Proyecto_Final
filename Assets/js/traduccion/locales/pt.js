@@ -1,10 +1,13 @@
 export default {
-    startNow: "Empezar Ahora",
-    p: "Te ayudamos a encontrar un tecnico para arreglar tu dispositivo en tiempo record",
-    welcome: "Bem-vindo a",
-    signin: "Iniciar Session",
-    signup: "Registrarse",
-    startPage: "Inicio",
-    contact: "Contacto",
-    Celular: "teste"
+    welcome: "Bem-Vindo a",
+    Laptop: "Laptop",
+    Celular: "Celular",
+    "Televisión": "Televisão",
+    Monitor: "Monitor",
+    Impresora: "Impressora",
+    Consola: "Console de VideoGame",
+    "Router/Módem": "Router/Módem",
+    Smartwatch: "Relógio",
+    Camaras: "Cameras",
+    "Disco Duro": "Disco Duro" 
 };

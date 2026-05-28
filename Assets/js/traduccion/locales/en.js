@@ -3,10 +3,10 @@ export default {
     Laptop: "Laptop",
     Celular: "Cellphone",
     "Televisión": "TV",
-    Monitor: "Screen",
+    Monitor: "Monitor",
     Impresora: "Printer",
-    Consola: "Console",
-    "Router/Módem": "Router",
+    Consola: "VideoGame Console",
+    "Router/Módem": "Router/Modem",
     Smartwatch: "Smartwatch",
     Camaras: "Cameras",
     "Disco Duro": "Hard Disc"

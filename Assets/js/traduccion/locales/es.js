@@ -5,9 +5,9 @@ export default {
     "Televisión": "Televisión",
     Monitor: "Monitor",
     Impresora: "Impresora",
-    Consola: "Consola",
+    Consola: "Consola de VideoJuegos",
     "Router/Módem": "Router/Módem",
-    Smartwatch: "Smartwatch",
+    Smartwatch: "Reloj Inteligente",
     Camaras: "Camaras",
     "Disco Duro": "Disco Duro" 
 };
