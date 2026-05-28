@@ -82,7 +82,7 @@ require_once(__DIR__ . "../../include/UH.php");
                     <td><?= htmlspecialchars($resultado['descripcion']); ?></td>
                     <?php if ($_SESSION['rol'] == ROL_CLIENTE): ?>
                             <td>
-                            <a title="Perfil de <?=$resultado['nombre_tecnico']?>" href="Index.php?accion=PerfilTecnico&id=<?= $resultado['id_tecnico'] ?>" class="btn btn-perfil-tecnico">
+                            <a title="<?=$resultado['nombre_tecnico']?>" href="Index.php?accion=PerfilTecnico&id=<?= $resultado['id_tecnico'] ?>" class="btn btn-perfil-tecnico">
                             <i class="fa fa-user"></i> <?= htmlspecialchars($resultado['nombre_tecnico'] ?? 'No asignado'); ?>
                             </a>
                             </td>
@@ -90,7 +90,7 @@ require_once(__DIR__ . "../../include/UH.php");
                             <td><?= htmlspecialchars($resultado['nombre_cliente']); ?></td>
                         <?php endif; ?>
                     <td>$<?= htmlspecialchars($resultado['precio']); ?></td>
-                    <td><?= htmlspecialchars($resultado['estado_nombre']); ?></td>
+                    <td data-translate="<?= htmlspecialchars($resultado['estado_nombre']); ?>"><?= htmlspecialchars($resultado['estado_nombre']); ?></td>
                     <?php if ($resultado['rating']): ?>
                         <td><?= htmlspecialchars($resultado['rating']."⭐"); ?></td>
                     <?php else: ?>
