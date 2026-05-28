@@ -10,7 +10,7 @@ async function cambiarIdioma(idioma) {
         
         applicarTraduccion();
     } catch (error) {
-        console.error(`Erro ao carregar o idioma: ${idioma}`, error);
+        console.error(`Error al cargar el idioma: ${idioma}`, error);
         if (idioma !== 'es') cambiarIdioma('es');
     }
 }

@@ -30,7 +30,7 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
                 <i class="fa-solid fa-moon"></i>
             </button>
 
-            <select name="idioma" id="language-select">
+            <select onchange="location.reload();"name="idioma" id="language-select">
                 <option value="es">Español</option>
                 <option value="en">English</option>
                 <option value="pt">Portugues</option>

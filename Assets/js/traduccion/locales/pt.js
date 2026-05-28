@@ -6,5 +6,5 @@ export default {
     signup: "Registrarse",
     startPage: "Inicio",
     contact: "Contacto",
-    teste: "teste"
+    Celular: "teste"
 };

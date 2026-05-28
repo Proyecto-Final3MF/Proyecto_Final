@@ -1,9 +1,13 @@
 export default {
-    startNow: "Start Now",
-    p: "We help you find a technician to fix your device in record time.",
     welcome: "Welcome to",
-    signin: "Sign In",
-    signup: "Sign Up",
-    startPage: "Start Page",
-    contact: "Contact"
+    Laptop: "Laptop",
+    Celular: "Cellphone",
+    "Televisión": "TV",
+    Monitor: "Screen",
+    Impresora: "Printer",
+    Consola: "Console",
+    "Router/Módem": "Router",
+    Smartwatch: "Smartwatch",
+    Camaras: "Cameras",
+    "Disco Duro": "Hard Disc"
 };
