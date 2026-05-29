@@ -149,7 +149,7 @@ class ReviewC {
             }
             $evento = "La calificación fue cambiada para " . $rating . "⭐";
             $this->historiaC->registrarEvento($id_solicitud, $evento);
-            $this->HistorialModel->registrarModificacion($_SESSION['usuario'], $_SESSION['id'], "edito su evaluación de la solicitud", $titulo_solicitud, $id_solicitud, $obs);
+            $this->HistorialModel->registrarModificacion($_SESSION['usuario'], $_SESSION['id'], "editó su evaluación de la solicitud", $titulo_solicitud, $id_solicitud, $obs);
             require_once(__DIR__ . '/../Controllers/NotificacionC.php');
             $notificacion = new NotificacionC();
             $notificacion->crearNotificacion($id_tecnico, "Tu calificación en la solicitud '$titulo_solicitud' fue editada.", 'urgente');

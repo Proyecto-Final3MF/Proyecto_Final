@@ -30,12 +30,6 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
                 <i class="fa-solid fa-moon"></i>
             </button>
 
-            <select onchange="location.reload();"name="idioma" id="language-select">
-                <option value="es">Español</option>
-                <option value="en">English</option>
-                <option value="pt">Portugues</option>
-            </select>
-
             <ul class="nav-links" id="nav-links">
                 <!-- Botón de Inicio -->
                 <li>
@@ -210,6 +204,12 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
                                     <i class="fa fa-user"></i> Mi Perfil
                                 </a>
                             <?php endif; ?>
+
+                            <select onchange="location.reload();"name="idioma" id="language-select">
+                                <option value="es">Español</option>
+                                <option value="en">English</option>
+                                <option value="pt">Portugues</option>
+                            </select>
 
                             <a href="Index.php?accion=editarU&id=<?= htmlspecialchars($_SESSION['id']) ?>" class="dropdown-item">
                                 <i class="fa fa-edit"></i> Editar Perfil
