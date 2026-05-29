@@ -58,14 +58,14 @@ require_once(__DIR__ . "../../include/UH.php");
                         <td><?= htmlspecialchars($resultado['descripcion']); ?></td>
                         <?php if ($_SESSION['rol'] == ROL_CLIENTE): ?>
                             <td>
-                                <a title="Perfil de <?=$resultado['nombre_tecnico']?>" href="Index.php?accion=PerfilTecnico&id=<?= $resultado['id_tecnico'] ?>" class="btn btn-perfil-tecnico">
+                                <a title="<?=$resultado['nombre_tecnico']?>" href="Index.php?accion=PerfilTecnico&id=<?= $resultado['id_tecnico'] ?>" class="btn btn-perfil-tecnico">
                                     <i class="fa fa-user"></i> <?= htmlspecialchars($resultado['nombre_tecnico'] ?? 'No asignado'); ?>
                                 </a>
                             </td>
                         <?php elseif ($_SESSION['rol'] == ROL_TECNICO): ?>
                             <td><?= htmlspecialchars($resultado['nombre_cliente']); ?></td>
                         <?php endif; ?>
-                        <td><?= htmlspecialchars($resultado['estado_nombre']); ?></td>
+                        <td data-translate="<?= htmlspecialchars($resultado['estado_nombre']); ?>"><?= htmlspecialchars($resultado['estado_nombre']); ?></td>
                         <td><?= htmlspecialchars(date('d/m/Y H:i:s ', strtotime($resultado['fecha_creacion']))); ?></td>
                         <td>
                             <div class="btn-group-actions d-flex">

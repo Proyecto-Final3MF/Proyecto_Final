@@ -77,21 +77,11 @@ class Producto {
         }
         
         switch ($orden) {
-            case "A-Z":
-                $sql .= "ORDER BY p.nombre ASC";
-                break;
-            case "Z-A":
-                $sql .= "ORDER BY p.nombre DESC";
-                break;
-            case "Más Recientes":
-                $sql .= "ORDER BY p.id DESC";
-                break;
-            case "Más Antiguos":
-                $sql .= "ORDER BY p.id ASC";
-                break;
-            default:
-                $sql .= "ORDER BY p.id ASC";
-                break;
+            case "A-Z": $sql .= "ORDER BY p.nombre ASC"; break;
+            case "Z-A": $sql .= "ORDER BY p.nombre DESC"; break;
+            case "Más Recientes": $sql .= "ORDER BY p.id DESC"; break;
+            case "Más Antiguos": $sql .= "ORDER BY p.id ASC"; break;
+            default: $sql .= "ORDER BY p.id ASC"; break;
         }
         $stmt = $this->conn->prepare($sql);
         

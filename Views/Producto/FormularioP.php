@@ -62,7 +62,7 @@
             <option value="">-- Seleccione el tipo de equipo --</option>
 
             <?php foreach ($categorias as $categoria): ?>
-                <option value="<?= $categoria['id'] ?>"><?= htmlspecialchars($categoria['nombre']) ?></option>
+                <option data-translate="<?= htmlspecialchars($categoria['nombre']) ?>" value="<?= $categoria['id'] ?>"><?= htmlspecialchars($categoria['nombre']) ?></option>
             <?php endforeach; ?>
 
         </select>  

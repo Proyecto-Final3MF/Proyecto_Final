@@ -23,7 +23,7 @@ if (session_status() === PHP_SESSION_NONE) {
     
 <br><br>
 
-<h1 class="inicio55">Bienvenido a</h1>
+<h1 data-translate="welcome" class="inicio55">Bienvenido a</h1>
 
 <h1 class="inicio55">C<img src="Assets/imagenes/logonueva.png" class="logoeninicio" height="50px" alt="logo de la app">SMOS</h1>
 
@@ -101,4 +101,3 @@ if (session_status() === PHP_SESSION_NONE) {
 
 </body>
 </html>
-

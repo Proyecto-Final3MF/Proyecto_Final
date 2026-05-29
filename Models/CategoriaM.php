@@ -62,21 +62,11 @@ class Categoria {
         }
 
         switch ($orden) {
-            case "A-Z":
-                $sql .= "ORDER BY nombre ASC";
-                break;
-            case "Z-A":
-                $sql .= "ORDER BY nombre DESC";
-                break;
-            case "Más Recientes":
-                $sql .= "ORDER BY id DESC";
-                break;
-            case "Más Antiguas":
-                $sql .= "ORDER BY id ASC";
-                break;
-            default:
-                $sql .= "ORDER BY id ASC";
-                break;
+            case "A-Z": $sql .= "ORDER BY nombre ASC"; break;
+            case "Z-A": $sql .= "ORDER BY nombre DESC"; break;
+            case "Más Recientes": $sql .= "ORDER BY id DESC"; break;
+            case "Más Antiguas": $sql .= "ORDER BY id ASC"; break;
+            default: $sql .= "ORDER BY id ASC"; break;
         }
 
         $stmt = $this->conn->prepare($sql);

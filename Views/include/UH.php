@@ -205,6 +205,12 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
                                 </a>
                             <?php endif; ?>
 
+                            <select onchange="location.reload();"name="idioma" id="language-select">
+                                <option value="es">Español</option>
+                                <option value="en">English</option>
+                                <option value="pt">Portugues</option>
+                            </select>
+
                             <a href="Index.php?accion=editarU&id=<?= htmlspecialchars($_SESSION['id']) ?>" class="dropdown-item">
                                 <i class="fa fa-edit"></i> Editar Perfil
                             </a>
@@ -225,3 +231,4 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
 <script src="Assets/js/menudeusuario.js"></script>
 <script src="Assets/js/transicion.js"></script>
 <script src="Assets/js/modoOscuro.js"></script>
+<script type="module" src="Assets/js/traduccion/Traduccion.js"></script>

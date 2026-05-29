@@ -3,14 +3,14 @@ require_once(__DIR__ . '/../Models/SolicitudM.php');
 require_once(__DIR__ . '/solicitud_historiaC.php');
 require_once(__DIR__ . "/../Views/include/popup.php");
 require_once(__DIR__ . "/HistorialC.php");
-require_once(__DIR__ . '/../Services/EmailService.php');
+//require_once(__DIR__ . '/../Services/EmailService.php');
 
 class SolicitudC {
     private $solicitudModel;
     private $historiaC;
     private $historialController;
-    private $emailService; // Propiedad para el servicio de email
-    private $adminEmail; // Propiedad para el email del admin
+    //private $emailService; // Propiedad para el servicio de email
+    //private $adminEmail; // Propiedad para el email del admin
 
     public function __construct() {
         $this->solicitudModel = new Solicitud();
@@ -18,9 +18,9 @@ class SolicitudC {
         $this->historialController = new HistorialController();
 
         // Inicializar EmailService y obtener la configuración
-        $this->emailService = new EmailService();
-        $config = include(__DIR__ . '/../Config/email.php');
-        $this->adminEmail = $config['notifications']['admin_email'];
+        //$this->emailService = new EmailService();
+        //$config = include(__DIR__ . '/../Config/email.php');
+        //$this->adminEmail = $config['notifications']['admin_email'];
     }
 
     public function formularioS() {
@@ -105,13 +105,13 @@ class SolicitudC {
             $this->historiaC->registrarEvento($id_solicitud, "Solicitud Urgente creada");
             $this->historialController->registrarModificacion($_SESSION['usuario'], $_SESSION['id'], "Creo la solicitud urgente", $titulo, $id_solicitud, null);
 
-            $usuarioModel = new Usuario();  // Instancia del modelo
-            $emailsTecnicos = $usuarioModel->obtenerEmailsTecnicos();
-            $asunto = "🚨 Nueva Solicitud Urgente Creada: $titulo";
-            $mensaje = "Se ha creado una nueva solicitud urgente:<br><strong>Título:</strong> {$titulo}<br><strong>Descripción:</strong> {$descripcion}<br><br>";
-            foreach ($emailsTecnicos as $email) {
-                $this->emailService->enviarNotificacion($email, $asunto, $mensaje, 'urgente');
-            }
+            //$usuarioModel = new Usuario();  // Instancia del modelo
+            //$emailsTecnicos = $usuarioModel->obtenerEmailsTecnicos();
+            //$asunto = "🚨 Nueva Solicitud Urgente Creada: $titulo";
+            //$mensaje = "Se ha creado una nueva solicitud urgente:<br><strong>Título:</strong> {$titulo}<br><strong>Descripción:</strong> {$descripcion}<br><br>";
+            //foreach ($emailsTecnicos as $email) {
+                //$this->emailService->enviarNotificacion($email, $asunto, $mensaje, 'urgente');
+            //}
 
             require_once(__DIR__ . '/NotificacionC.php');
             $notificacion = new NotificacionC();
@@ -209,11 +209,11 @@ class SolicitudC {
             $solicitud = $this->solicitudModel->obtenerSolicitudPorId($id_soli);
             $notificacion->crearNotificacion($solicitud['cliente_id'], "Tu solicitud '{$solicitud['titulo']}' fue aceptada por un técnico.", 'urgente');
 
-            $usuarioModel = new Usuario();
-            $emailCliente = $usuarioModel->obtenerEmailUsuarioPorId($solicitud['cliente_id']);
-            $asunto = "✅ Tu Solicitud Fue Aceptada: {$solicitud['titulo']}";
-            $mensaje = "Tu solicitud ha sido aceptada por un técnico.<br><br>";
-            $this->emailService->enviarNotificacion($emailCliente, $asunto, $mensaje, 'normal');
+            //$usuarioModel = new Usuario();
+            //$emailCliente = $usuarioModel->obtenerEmailUsuarioPorId($solicitud['cliente_id']);
+            //$asunto = "✅ Tu Solicitud Fue Aceptada: {$solicitud['titulo']}";
+            //$mensaje = "Tu solicitud ha sido aceptada por un técnico.<br><br>";
+            //$this->emailService->enviarNotificacion($emailCliente, $asunto, $mensaje, 'normal');
 
             $this->historialController->registrarModificacion($_SESSION['usuario'], $id_tecnico, "seleccionó a la solicitud", $solicitud['titulo'], $id_soli, null);
 
@@ -322,12 +322,12 @@ class SolicitudC {
                 $this->historiaC->registrarEvento($id, $evento);
                 $obs .= $evento . ". ‎ ";
 
-                $usuarioModel = new Usuario();
-                $emailCliente = $usuarioModel->obtenerEmailUsuarioPorId($datosSolicitud['cliente_id']);
-                $asunto = "🔄 Estado de Tu Solicitud Cambió: {$datosSolicitud['titulo']}";
+                //$usuarioModel = new Usuario();
+                //$emailCliente = $usuarioModel->obtenerEmailUsuarioPorId($datosSolicitud['cliente_id']);
+                //$asunto = "🔄 Estado de Tu Solicitud Cambió: {$datosSolicitud['titulo']}";
                  // Finalizado -> listarST, otros -> listarSA
-                $mensaje = "El estado de tu solicitud cambió a: <strong>{$nuevoEstado['nombre']}</strong>.<br><br>";
-                $this->emailService->enviarNotificacion($emailCliente, $asunto, $mensaje, 'normal');
+                //$mensaje = "El estado de tu solicitud cambió a: <strong>{$nuevoEstado['nombre']}</strong>.<br><br>";
+                //$this->emailService->enviarNotificacion($emailCliente, $asunto, $mensaje, 'normal');
             }
 
             if ($descAntigua !== $descripcion) {
@@ -387,16 +387,16 @@ class SolicitudC {
             $this->historiaC->registrarEvento($id_soli, "Solicitud cancelada");
             $this->historialController->registrarModificacion($_SESSION['usuario'], $_SESSION['id'], "canceló la solicitud", $solicitud['titulo'], $id_soli, null);
 
-            $usuarioModel = new Usuario();
-            if ($_SESSION['rol'] == 1) {  // Técnico canceló -> notificar al cliente
-                $emailDestinatario = $usuarioModel->obtenerEmailUsuarioPorId($solicitud['cliente_id']);
-                $asunto = "❌ Tu Solicitud Fue Cancelada por el Técnico: {$solicitud['titulo']}";
-                $mensaje = "El técnico canceló tu solicitud ya aceptada.<br><br>";
-            } elseif ($_SESSION['rol'] == 2) {  // Cliente canceló -> notificar al técnico
-                $emailDestinatario = $usuarioModel->obtenerEmailUsuarioPorId($solicitud['tecnico_id']);
-                $asunto = "❌ Solicitud Cancelada por el Cliente: {$solicitud['titulo']}";
-                $mensaje = "El cliente canceló la solicitud ya aceptada.<br><br>";
-            }
+            //$usuarioModel = new Usuario();
+            //if ($_SESSION['rol'] == 1) {  // Técnico canceló -> notificar al cliente
+            //    $emailDestinatario = $usuarioModel->obtenerEmailUsuarioPorId($solicitud['cliente_id']);
+             //   $asunto = "❌ Tu Solicitud Fue Cancelada por el Técnico: {$solicitud['titulo']}";
+               // $mensaje = "El técnico canceló tu solicitud ya aceptada.<br><br>";
+            //} elseif ($_SESSION['rol'] == 2) {  // Cliente canceló -> notificar al técnico
+              //  $emailDestinatario = $usuarioModel->obtenerEmailUsuarioPorId($solicitud['tecnico_id']);
+                //$asunto = "❌ Solicitud Cancelada por el Cliente: {$solicitud['titulo']}";
+                //$mensaje = "El cliente canceló la solicitud ya aceptada.<br><br>";
+            //}
 
             $this->emailService->enviarNotificacion($emailDestinatario, $asunto, $mensaje, 'urgente');
 

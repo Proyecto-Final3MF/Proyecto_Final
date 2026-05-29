@@ -188,9 +188,7 @@ switch ($accion) {
   break;
 
   case 'formularioP':
-    //crea una nueva instancia del objeto ProductoC
     $controller = new ProductoC();
-    //ejecuta la funcion formularioP para mostrar formulario
     $controller->formularioP();
   break;
 
