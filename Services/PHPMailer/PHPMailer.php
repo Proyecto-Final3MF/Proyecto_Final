@@ -2497,7 +2497,7 @@ class PHPMailer {
                             $matches
                         ) &&
                         //Ignore unknown translation keys
-                        array_key_exists($matches[1], $PHPMAILER_idioma)
+                        array_key_exists($matches[1], $PHPMAILER_LANG)
                     ) {
                         //Overwrite language-specific strings so we'll never have missing translation keys.
                         $PHPMAILER_LANG[$matches[1]] = (string)$matches[3];

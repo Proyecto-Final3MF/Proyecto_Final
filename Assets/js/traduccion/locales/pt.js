@@ -9,7 +9,7 @@ export default {
     Impresora: "Impressora",
     Consola: "Console de VideoGame",
     "Router/Módem": "Router/Módem",
-    Smartwatch: "Relógio",
+    Smartwatch: "Relógio Inteligente",
     Camaras: "Cameras",
     "Disco Duro": "Disco Duro",
 
