@@ -11,7 +11,7 @@ export default {
     "Router/Módem": "Router/Modem",
     "Smartwatch": "Smartwatch",
     "Camaras": "Cameras",
-    "Disco Duro": "Hard Disc",
+    "Disco Duro": "Hard Disk", //O hard drive
 
     //Estados
     "Disponible": "Availible",
