@@ -1,4 +1,3 @@
-*  Definir como vamos comercializar _COSMOS_.
 *  Definir los papeles de cada miembro.
 *  Arreglar problemas con css (perdon Alex).
 *  Rediseñar (al menos algunas) paginas (Desculpa Alex).
