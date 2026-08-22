@@ -6,14 +6,14 @@ class PublicC {
     }
 
     public function nosotros() {
-        include(__DIR__ . "/../Views/Usuario/Nosotros.php");
+        include(__DIR__ . "/../Views/Usuario/nosotros.php");
     }
 
     public function contacto() {
-        include(__DIR__ . "/../Views/Usuario/Contacto.php");
+        include(__DIR__ . "/../Views/Usuario/contacto.php");
     }
 
     public function terminos() {
-        include(__DIR__ . "/../Views/Usuario/Terminos.php");
+        include(__DIR__ . "/../Views/Usuario/terminos.php");
     }
 }
