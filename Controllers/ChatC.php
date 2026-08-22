@@ -34,7 +34,7 @@ class ChatC {
             $solicitud = $solicitudModel->obtenerSolicitudPorId($solicitudId);
         }
 
-        require_once __DIR__ . '/../Views/chat.php';
+        require_once __DIR__ . '/../Views/Chat.php';
     }
 
     public function cargarMensajes() {
@@ -50,7 +50,7 @@ class ChatC {
         $mensajeModel = new Mensaje();
         $mensajes = $mensajeModel->obtenerConversacion($usuarioId, $otroUsuarioId, $solicitudId);
 
-        include __DIR__ . "/../Views/mensajes.php";
+        include __DIR__ . "/../Views/Mensajes.php";
     }
 
     // Mostrar la vista de chat
@@ -79,7 +79,7 @@ class ChatC {
         // Obtener todos los mensajes entre los dos usuarios
         $mensajes = $mensajeModel->obtenerConversacion($usuarioId, $otroUsuarioId, $solicitudId);
 
-        include __DIR__ . "/../Views/conversaciones.php";
+        include __DIR__ . "/../Views/Conversaciones.php";
     }
 
     // Devolver solo los mensajes (para Ajax)
@@ -116,13 +116,13 @@ class ChatC {
         $mensajeModel = new Mensaje();
         $conversaciones = $mensajeModel->obtenerConversaciones($usuario_id);
 
-        include __DIR__ . "/../Views/conversaciones.php";
+        include __DIR__ . "/../Views/Conversaciones.php";
     }
     // Lista todas las conversaciones de un usuario
     public function registroChats() {
         $mensaje = new Mensaje();
         $conversaciones = $mensaje->obtenerTodasLasConversaciones();
-        include __DIR__ . "/../Views/registroChats.php";
+        include __DIR__ . "/../Views/RegistroChats.php";
     }
 
     public function abrirChat() {
