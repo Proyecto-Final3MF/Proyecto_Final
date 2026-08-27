@@ -34,7 +34,7 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
                 <!-- Botón de Inicio -->
                 <li>
                     <a href="Index.php?accion=inicio">
-                        <i class="fa fa-home"></i> Inicio
+                        <i class="fa fa-home"></i><span data-translate="inicio"> Inicio</span>
                     </a>
                 </li>
 
@@ -42,7 +42,7 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
                 <?php if (isset($_SESSION['usuario'])): ?>
                     <li>
                         <a href="Index.php?accion=redireccion">
-                            <i class="fa fa-tools"></i> Mi Unidad
+                            <i class="fa fa-tools"></i> <span data-translate="Unidad"> Mi Unidad</span>
                         </a>
                     </li>
                 <?php endif; ?>
@@ -61,7 +61,7 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
                     </li>
                     <li>
                         <a href="Index.php?accion=contacto">
-                            <i class="fa fa-envelope"></i> Contáctanos
+                            <i class="fa fa-envelope"></i><span data-translate="contacto"> Contáctanos</span>
                         </a>
                     </li>
                 <?php endif; ?>
@@ -73,10 +73,10 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
             <?php if (!isset($_SESSION['usuario'])): ?>
                 <div class="action-buttons">
                     <a href="Index.php?accion=login">
-                        <button class="btn btn-boton">Iniciar sesión</button>
+                        <button data-translate="login" class="btn btn-boton">Iniciar sesión</button>
                     </a>
                     <a href="Index.php?accion=register">
-                        <button class="btn btn-boton">Registrarse</button>
+                        <button class="btn btn-boton" data-translate="signin">Registrarse</button>
                     </a>
                 </div>
             <?php else: ?>
@@ -120,34 +120,31 @@ $notificaciones = $notifC->listarNoLeidas('urgente');  // Solo urgentes
             <div class="notif-item">
                 <span class="notif-text"><?= htmlspecialchars($n['mensaje']) ?> <small><?= $fecha_formateada ?></small></span>
                 <?php if ($url): ?>
-                    <a href="<?= $url ?>" class="verlasnoti">Ver</a>
+                    <a data-translate="ver" href="<?= $url ?>" class="verlasnoti">Ver</a>
                 <?php endif; ?>
             </div>
         <?php endforeach; ?>
     <?php else: ?>
-        <p class="notif-item">Sin notificaciones nuevas</p>
+        <p data-translate="no-not" class="notif-item">Sin notificaciones nuevas</p>
     <?php endif; ?>
 </div>
-
-
                 </div>
-
                 <!-- Menú de roles -->
                 <div class="menu-rol-container">
                     <button class="dropdown-button" onclick="toggleRolMenu()">
-                        <i class="fa-solid fa-bars"></i> Menú
+                        <i class="fa-solid fa-bars"></i> <span data-translate="menu">Menú</span>
                     </button>
 
                     <div id="rolDropdown" class="dropdown-menu">
                         <?php if ($_SESSION['rol'] == 2): ?>
                             <a href="Index.php?accion=listarP" class="dropdown-item">
-                                <i class="fa-solid fa-box"></i> Mis Dispositivos
+                                <i class="fa-solid fa-box"></i> <span data-translate="Dispositivos">Mis Dispositivos</span>
                             </a>
                             <a href="Index.php?accion=formularioS" class="dropdown-item">
-                                <i class="fa-solid fa-plus-circle"></i> Crear Nueva Solicitud
+                                <i class="fa-solid fa-plus-circle"></i><span data-translate="NuevaSolicitud">Crear Nueva Solicitud</span>
                             </a>
                             <a href="Index.php?accion=listarSLU" class="dropdown-item">
-                                <i class="fa-solid fa-hourglass-half"></i> Solicitudes Sin Asignar
+                                <i class="fa-solid fa-hourglass-half"></i><span data-translate="sinAsignar">Solicitudes Sin Asignar</span>
                             </a>
                             <a href="Index.php?accion=listarSA" class="dropdown-item">
                                 <i class="fa-solid fa-check"></i> Solicitudes Aceptadas

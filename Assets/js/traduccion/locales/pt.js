@@ -1,6 +1,4 @@
 export default {
-    welcome: "Bem-Vindo a",
-
     //Categorias
     "Laptop": "Laptop",
     "Celular": "Celular",
@@ -18,5 +16,18 @@ export default {
     "En Diagnostico": "Em Diagnostico",
     "En espera de repuestos": "Em espera de peças",
     "En reparación": "Em reparação",
-    "Finalizado": "Finalizado"
+    "Finalizado": "Finalizado",
+
+    //Header
+    "inicio": " Inicio",
+    "Unidad": " Minha Unidade",
+    "contacto": " Nos contate",
+    "login": "Iniciar Sessão",
+    "signin": "Criar Conta",
+    "ver": "Ver",
+    "no-not": "Sem notificações",
+    "menu": " Menu",
+    "Dispositivos": "Meus Dispositivos",
+    "NuevaSolicitud": "Criar Nova Pedido",
+    "sinAsignar": "Pedidos não atribuídos"
 };
